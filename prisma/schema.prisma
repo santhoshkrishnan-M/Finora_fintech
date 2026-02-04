@@ -1,0 +1,204 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                String              @id @default(uuid())
+  email             String              @unique
+  password          String
+  hasProfile        Boolean             @default(false)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  
+  profile           FinancialProfile?
+  budgets           Budget[]
+  savingsStrategies SavingsStrategy[]
+  scenarios         ScenarioAttempt[]
+  learningProgress  LearningProgress[]
+}
+
+model FinancialProfile {
+  id                  String   @id @default(uuid())
+  userId              String   @unique
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Demographics
+  ageRange            String   // "18-25", "26-35", "36-45", "46-60", "60+"
+  userCategory        String   // "student", "farmer", "woman", "professional"
+  language            String   @default("en") // "en", "ta", "hi", "te", "ml", "kn"
+  
+  // Financial Information
+  monthlyIncome       Float
+  monthlyExpenses     Float
+  
+  // Goals and Risk Profile
+  financialGoals      String   // Comma-separated goal IDs
+  riskComfortLevel    String   // "low", "medium", "high"
+  
+  // Additional Context
+  hasEmergencyFund    Boolean  @default(false)
+  currentSavings      Float    @default(0)
+  
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Budget {
+  id          String         @id @default(uuid())
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  month       String         // "2026-02"
+  year        Int
+  
+  totalIncome Float
+  categories  BudgetCategory[]
+  
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  
+  @@unique([userId, month, year])
+}
+
+model BudgetCategory {
+  id          String   @id @default(uuid())
+  budgetId    String
+  budget      Budget   @relation(fields: [budgetId], references: [id], onDelete: Cascade)
+  
+  name        String   // "Housing", "Food", "Transportation", etc.
+  planned     Float
+  actual      Float    @default(0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SavingsStrategy {
+  id                String   @id @default(uuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  strategyType      String   // "SIP", "SWP", "RD", "EMERGENCY_FUND"
+  
+  // Strategy Parameters
+  monthlyAmount     Float?
+  targetAmount      Float?
+  duration          Int?     // in months
+  
+  // AI Generated Explanation
+  explanation       String?
+  recommendations   String?
+  
+  // Status
+  isActive          Boolean  @default(true)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Scenario {
+  id              String            @id @default(uuid())
+  
+  category        String            // "student", "farmer", "woman", "professional"
+  language        String            @default("en")
+  
+  title           String
+  description     String
+  situation       String
+  
+  options         ScenarioOption[]
+  attempts        ScenarioAttempt[]
+  
+  difficultyLevel String            // "beginner", "intermediate", "advanced"
+  
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model ScenarioOption {
+  id              String   @id @default(uuid())
+  scenarioId      String
+  scenario        Scenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+  
+  optionText      String
+  isCorrect       Boolean
+  explanation     String
+  
+  createdAt       DateTime @default(now())
+}
+
+model ScenarioAttempt {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  scenarioId      String
+  scenario        Scenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+  
+  selectedOption  String
+  isCorrect       Boolean
+  
+  // AI Generated Feedback
+  feedback        String?
+  
+  createdAt       DateTime @default(now())
+}
+
+model LearningPath {
+  id              String             @id @default(uuid())
+  
+  category        String             // "student", "farmer", "woman", "professional"
+  language        String             @default("en")
+  
+  title           String
+  description     String
+  
+  modules         LearningModule[]
+  progress        LearningProgress[]
+  
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+}
+
+model LearningModule {
+  id              String         @id @default(uuid())
+  pathId          String
+  path            LearningPath   @relation(fields: [pathId], references: [id], onDelete: Cascade)
+  
+  order           Int
+  title           String
+  content         String
+  
+  // Module Type
+  moduleType      String         // "lesson", "quiz", "scenario"
+  
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model LearningProgress {
+  id              String       @id @default(uuid())
+  userId          String
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  pathId          String
+  path            LearningPath @relation(fields: [pathId], references: [id], onDelete: Cascade)
+  
+  completedModules String      // Comma-separated module IDs
+  currentModule    String?
+  
+  progress        Float        @default(0) // 0-100
+  
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  
+  @@unique([userId, pathId])
+}
