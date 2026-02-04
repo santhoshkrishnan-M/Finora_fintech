@@ -1,793 +1,405 @@
-# 🏦 FINORA - Vernacular Financial Guidance Platform
+# FINORA - Vernacular Financial Guidance Platform
 
-<div align="center">
-
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-
-**A production-ready, vernacular-first financial guidance platform designed for Indian users**
-
-[Features](#-features) • [Tech Stack](#️-tech-stack) • [Getting Started](#-getting-started) • [Documentation](#-documentation) • [Contributing](#-contributing)
-
-</div>
+A production-ready, education-first financial literacy platform designed to bridge the financial knowledge gap across India through personalized guidance, multilingual support, and AI-powered assistance.
 
 ---
 
-## 📖 Table of Contents
+## Project Overview
 
-- [About](#-about)
-- [Features](#-features)
-- [Tech Stack](#️-tech-stack)
-- [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
-- [Configuration](#️-configuration)
-- [Usage](#-usage)
-- [Project Structure](#-project-structure)
-- [API Documentation](#-api-documentation)
-- [Database Schema](#️-database-schema)
-- [Multilingual Support](#-multilingual-support)
-- [Security](#-security)
-- [Troubleshooting](#-troubleshooting)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Support](#-support)
+FINORA is a comprehensive financial literacy platform that addresses the critical gap in financial education among India's diverse population. The platform provides personalized financial guidance through an intelligent AI assistant named FRIDAY (Financial Resource and Intelligent Decision-making Assistant for You), supporting six Indian languages and catering to distinct user segments including students, farmers, women, and working professionals.
+
+Unlike traditional fintech applications that focus on transactions or investment products, FINORA is exclusively education-oriented. The platform does not facilitate trading, recommend specific stocks, or promote financial products. Instead, it empowers users to make informed financial decisions through clear explanations, practical scenarios, and structured learning paths.
+
+**Repository**: https://github.com/santhoshkrishnan-M/Finora_fintech
 
 ---
 
-## 📌 About
+## Problem Statement
 
-FINORA is an innovative financial literacy platform that bridges the gap between financial knowledge and vernacular users across India. The platform provides personalized financial education and planning tools without involving trading or stock execution, making it safe and accessible for beginners.
+Financial literacy remains a significant challenge in India, where a large portion of the population lacks access to quality financial education. Several critical gaps exist:
 
-### Why FINORA?
+### 1. Language Barriers
+Most financial education resources are available only in English, excluding millions of vernacular language speakers who cannot access this vital information in their native languages.
 
-- **Vernacular-First**: Support for 6 Indian languages with culturally adapted content
-- **Educational Focus**: No trading, no stock recommendations - purely educational
-- **AI-Powered**: Personalized guidance using Google Gemini AI
-- **User-Centric**: Tailored experiences for Students, Farmers, Women, and Working Professionals
+### 2. Lack of Personalization
+Generic financial advice fails to account for demographic differences, income levels, cultural contexts, and varying financial goals across different user segments such as farmers, students, or urban professionals.
 
----
+### 3. Complexity and Intimidation
+Financial concepts are often presented using technical jargon and complex terminology, making them inaccessible to beginners and creating a barrier to financial literacy.
 
-## ✨ Features
+### 4. Limited Practical Application
+Traditional financial education lacks interactive, scenario-based learning that allows users to practice decision-making in safe, simulated environments before applying concepts to real-world situations.
 
-### Core Functionality
+### 5. Trust Deficit
+Many financial platforms prioritize product sales over education, leading to user skepticism and hesitation in seeking financial guidance.
 
-| Feature | Description |
-|---------|-------------|
-| **Multi-language Support** | English, Tamil, Hindi, Telugu, Malayalam, Kannada |
-| **User Segmentation** | Students, Farmers, Women, Working Professionals |
-| **Budget Planner** | Dynamic monthly budget tracking with category management |
-| **Savings Strategies** | SIP, SWP, RD, Emergency Fund guidance with AI explanations |
-| **Learning Scenarios** | Real-world financial situations with AI-powered feedback |
-| **Learning Paths** | Structured financial education modules with progress tracking |
-| **Secure Authentication** | JWT-based authentication with bcrypt password hashing |
-| **AI Assistant (FRIDAY)** | Context-aware financial guidance chatbot |
+These challenges result in poor financial decision-making, inadequate savings habits, and limited financial security among large segments of the Indian population.
 
 ---
 
-## 🛠️ Tech Stack
+## Proposed Solution
 
-### Frontend
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **UI Components**: Radix UI
-- **State Management**: Zustand
-- **Internationalization**: next-intl
+FINORA addresses these challenges through a comprehensive, user-centric platform built on four core principles:
 
-### Backend
-- **Runtime**: Node.js 18+
-- **Framework**: Express.js
-- **Database**: PostgreSQL
-- **ORM**: Prisma
-- **Authentication**: JWT (jsonwebtoken)
-- **Password Hashing**: bcrypt
-- **AI Integration**: Google Gemini API
+### 1. Vernacular-First Approach
+The platform provides complete support for six Indian languages: English, Hindi, Tamil, Telugu, Malayalam, and Kannada. All content, including AI responses, educational materials, and user interfaces, is culturally adapted and contextually relevant for each language.
+
+### 2. Demographic Personalization
+FINORA tailors the entire user experience based on specific demographic categories:
+- **Students**: Focus on budgeting, saving habits, and foundational financial concepts
+- **Farmers**: Agricultural income management, seasonal planning, and risk mitigation
+- **Women**: Financial independence, household budget management, and long-term security
+- **Working Professionals**: Investment strategies, tax planning, and wealth accumulation
+
+### 3. AI-Powered Educational Assistant
+FRIDAY, our AI assistant powered by Google Gemini, provides:
+- Simplified explanations of complex financial concepts
+- Context-aware guidance based on user profiles
+- Interactive responses to financial queries
+- Scenario-based learning with immediate feedback
+
+The AI operates under strict ethical guidelines: no market predictions, no product recommendations, and purely educational content delivery.
+
+### 4. Practical Learning Tools
+The platform includes:
+- **Budget Planner**: Dynamic monthly budget tracking with category-wise analysis
+- **Savings Strategies**: Personalized guidance on SIP, SWP, Recurring Deposits, and Emergency Funds
+- **Learning Scenarios**: Real-world financial situations with multiple-choice decisions and AI-generated feedback
+- **Structured Learning Paths**: Progressive educational modules with progress tracking
 
 ---
 
-## 📋 Prerequisites
+## Target Users
 
-Before you begin, ensure you have the following installed:
+FINORA is designed for four primary user segments across India:
 
-- **Node.js** 18.0.0 or higher ([Download](https://nodejs.org/))
-- **PostgreSQL** 14.0 or higher ([Download](https://www.postgresql.org/download/))
-- **Git** (for version control)
-- **Google Gemini API Key** ([Get Free Key](https://makersuite.google.com/app/apikey))
+### Students (Ages 18-25)
+Individuals in educational institutions seeking to develop foundational financial habits, understand budgeting basics, and prepare for financial independence.
+
+### Farmers
+Agricultural workers requiring assistance with seasonal income management, crop financing understanding, and agricultural loan planning in vernacular languages.
+
+### Women
+Women across demographics looking to achieve financial independence, manage household budgets effectively, and build long-term financial security.
+
+### Working Professionals (Ages 25-50)
+Salaried employees and self-employed professionals seeking structured guidance on savings optimization, investment fundamentals, and financial goal achievement.
 
 ---
 
-## 📥 Installation
+## Key Features
 
-### Step 1: Clone the Repository
+### Multilingual Support
+Complete platform availability in six Indian languages with culturally adapted financial terminology and context-appropriate examples.
 
+### Personalized User Profiling
+Comprehensive onboarding process capturing age range, demographic category, monthly income, expenses, financial goals, and risk tolerance to tailor all platform interactions.
+
+### Budget Management System
+Interactive budget planner allowing users to:
+- Set monthly income and expense targets
+- Track spending across customizable categories
+- Receive AI-powered insights on budget optimization
+- Monitor financial health month-over-month
+
+### Savings Strategy Generator
+AI-driven tool providing personalized explanations for:
+- Systematic Investment Plans (SIP)
+- Systematic Withdrawal Plans (SWP)
+- Recurring Deposits (RD)
+- Emergency Fund creation and management
+
+Each strategy includes clear explanations, suitability analysis, and step-by-step implementation guidance.
+
+### Interactive Learning Scenarios
+Scenario-based learning modules presenting real-world financial situations where users:
+- Read contextual financial challenges
+- Select from multiple decision options
+- Receive detailed AI feedback on their choices
+- Build decision-making confidence through practice
+
+### Structured Learning Paths
+Progressive educational modules covering:
+- Budgeting fundamentals
+- Savings principles
+- Debt management
+- Basic investment concepts
+- Financial goal setting
+- Risk assessment
+
+### FRIDAY AI Assistant
+Context-aware chatbot providing:
+- On-demand financial explanations
+- Personalized guidance based on user profile
+- Answers to specific financial queries
+- Section-specific help throughout the platform
+
+### Secure Authentication
+JWT-based authentication system ensuring:
+- Encrypted password storage using bcrypt
+- Secure session management
+- Protected user data and financial information
+
+---
+
+## Technology Stack
+
+### Frontend Technologies
+- **Framework**: Next.js 14 with App Router for server-side rendering and optimal performance
+- **Language**: TypeScript for type safety and enhanced developer experience
+- **Styling**: Tailwind CSS for responsive, utility-first design
+- **UI Components**: Radix UI for accessible, composable interface elements
+- **State Management**: Zustand for lightweight, scalable state handling
+- **Internationalization**: next-intl for robust multilingual support
+
+### Backend Technologies
+- **Runtime**: Node.js 18+ for scalable server-side execution
+- **Framework**: Express.js for RESTful API development
+- **Database**: PostgreSQL for reliable, relational data storage
+- **ORM**: Prisma for type-safe database access and migrations
+- **Authentication**: JSON Web Tokens (JWT) with bcrypt password hashing
+- **AI Integration**: Google Gemini API for intelligent content generation
+
+### Development Tools
+- **Version Control**: Git and GitHub
+- **Database Management**: Prisma Studio for visual database administration
+- **API Testing**: Custom test scripts for endpoint validation
+- **Environment Management**: dotenv for configuration management
+
+---
+
+## Innovation and Differentiation
+
+### Education-Only Positioning
+Unlike competing fintech platforms that prioritize transactions or product sales, FINORA maintains strict educational focus. The platform explicitly avoids:
+- Stock trading or investment execution
+- Financial product promotions
+- Commission-based recommendations
+- Market predictions or investment advice
+
+This positioning builds user trust and ensures content remains purely educational.
+
+### Vernacular Accessibility
+While English-only financial education is prevalent, FINORA provides complete vernacular language support with culturally adapted content, making financial literacy accessible to India's diverse linguistic population.
+
+### Demographic-Specific Personalization
+The platform goes beyond basic personalization by tailoring content, examples, and guidance specifically for farmers, students, women, and working professionals, addressing their unique financial contexts and challenges.
+
+### Responsible AI Integration
+FINORA demonstrates ethical AI usage through:
+- Transparent AI limitations disclosure
+- Education-focused content generation
+- No automated financial decisions
+- User profile-based contextual responses
+- Cultural sensitivity in multilingual outputs
+
+### Comprehensive Learning Ecosystem
+The platform integrates multiple learning modalities: interactive budgeting tools, AI-powered explanations, scenario-based practice, and structured educational content, creating a holistic learning environment.
+
+---
+
+## Scalability and Future Scope
+
+### Technical Scalability
+The platform architecture supports horizontal scaling through:
+- Stateless backend API design
+- Database connection pooling via Prisma
+- Containerization-ready application structure
+- Cloud deployment compatibility (Vercel, Railway, AWS)
+
+### Feature Expansion Roadmap
+
+#### Phase 1 Enhancements
+- Advanced data visualization with interactive charts
+- PDF and Excel report generation for budgets and strategies
+- Email notification system for reminders and achievements
+- Mobile application development using React Native
+- Gamification elements for engagement enhancement
+
+#### Phase 2 Additions
+- Investment basics module (education-only, no execution)
+- Tax calculation tools and planning guidance
+- Insurance planning educational content
+- Retirement planning calculators
+- Community discussion forums with moderation
+
+#### Phase 3 Vision
+- Expert consultation matching (verified financial educators)
+- Institutional partnerships for content validation
+- Regional language expansion (Bengali, Marathi, Gujarati, Punjabi)
+- Offline capability for rural users
+- Voice-based interaction for accessibility
+
+### Geographic Expansion
+While initially focused on India, the platform architecture supports adaptation for other developing economies facing similar financial literacy challenges.
+
+---
+
+## Impact and Value Proposition
+
+### Social Impact
+FINORA directly addresses United Nations Sustainable Development Goals, particularly:
+- **SDG 4 (Quality Education)**: Providing accessible financial education
+- **SDG 5 (Gender Equality)**: Empowering women through financial literacy
+- **SDG 10 (Reduced Inequalities)**: Bridging the financial knowledge gap across demographics
+
+### Measurable Outcomes
+The platform enables:
+- Improved budgeting habits among users
+- Increased savings rates through strategy implementation
+- Enhanced financial decision-making confidence
+- Reduced dependency on exploitative financial products
+- Greater financial inclusion for vernacular speakers
+
+### Economic Value
+By improving financial literacy, FINORA contributes to:
+- Reduced household debt levels
+- Better credit management practices
+- Increased formal savings participation
+- Enhanced economic security for vulnerable populations
+
+### Competitive Advantages
+- **Zero-Cost Access**: Free platform removing financial barriers to education
+- **Trust-Based Model**: No hidden product promotions or sales objectives
+- **Comprehensive Coverage**: End-to-end financial education in one platform
+- **Cultural Relevance**: Localized content resonating with diverse user groups
+
+---
+
+## Team Vision and Mission
+
+### Vision
+To democratize financial literacy across India by making quality financial education accessible, personalized, and culturally relevant for every individual, regardless of language, location, or economic background.
+
+### Mission
+FINORA is committed to:
+- Eliminating language barriers in financial education
+- Providing unbiased, education-focused financial guidance
+- Leveraging technology responsibly to personalize learning experiences
+- Building financial confidence and decision-making capabilities
+- Creating a trusted platform where users can learn without fear of exploitation
+
+### Guiding Principles
+1. **Education Over Commerce**: Never compromise educational integrity for commercial gain
+2. **Accessibility First**: Ensure the platform remains free and accessible to all users
+3. **Cultural Sensitivity**: Respect and adapt to India's diverse cultural and linguistic landscape
+4. **Ethical AI Usage**: Deploy artificial intelligence responsibly and transparently
+5. **User Privacy**: Protect user data and financial information rigorously
+6. **Continuous Improvement**: Regularly enhance content quality and platform capabilities
+
+---
+
+## Installation and Setup
+
+### Prerequisites
+- Node.js 18.0.0 or higher
+- PostgreSQL 14.0 or higher
+- Google Gemini API key (obtain from https://makersuite.google.com/app/apikey)
+
+### Installation Steps
+
+1. Clone the repository:
 ```bash
 git clone https://github.com/santhoshkrishnan-M/Finora_fintech.git
 cd Finora_fintech
 ```
 
-### Step 2: Install Dependencies
-
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-### Step 3: Database Setup
+3. Configure environment variables:
 
-#### Create PostgreSQL Database
-
-**Windows (PowerShell):**
-```powershell
-psql -U postgres -c "CREATE DATABASE finora;"
-```
-
-**macOS/Linux:**
-```bash
-sudo -u postgres psql -c "CREATE DATABASE finora;"
-```
-
----
-
-## ⚙️ Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
+Create a `.env` file in the root directory:
 ```env
-# Database Configuration
 DATABASE_URL="postgresql://username:password@localhost:5432/finora?schema=public"
-
-# JWT Secret (⚠️ Change this in production!)
-JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
-JWT_EXPIRES_IN="7d"
-
-# Google Gemini API Key
-GEMINI_API_KEY="your-gemini-api-key-here"
-
-# Application URLs
+JWT_SECRET="your-secure-secret-key"
+GEMINI_API_KEY="your-gemini-api-key"
 NODE_ENV="development"
 API_URL="http://localhost:3001"
 NEXT_PUBLIC_API_URL="http://localhost:3001"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-### Database Migration
-
-Initialize and migrate the database schema:
-
+4. Initialize the database:
 ```bash
-# Generate Prisma Client
 npm run prisma:generate
-
-# Run migrations
 npm run prisma:migrate
-
-# (Optional) Seed database with initial data
-npm run prisma:seed
-
-# (Optional) Open Prisma Studio
-npm run prisma:studio
 ```
 
----
+5. Start the application:
 
-## 🚀 Usage
-
-### Development Mode
-
-Run the application in development mode with hot-reload:
-
-#### Option 1: Concurrent Mode (Recommended)
-
-```bash
-npm run dev:all
-```
-
-#### Option 2: Separate Terminals
-
-**Terminal 1 - Backend Server:**
+Terminal 1 (Backend):
 ```bash
 npm run server:dev
 ```
 
-**Terminal 2 - Frontend:**
+Terminal 2 (Frontend):
 ```bash
 npm run dev
 ```
 
-### Access the Application
-
-- **Frontend**: [http://localhost:3000](http://localhost:3000)
-- **Backend API**: [http://localhost:3001](http://localhost:3001)
-- **Prisma Studio**: [http://localhost:5555](http://localhost:5555)
-
-### Production Mode
-
-```bash
-# Build the application
-npm run build
-
-# Start production server
-npm start
-```
+6. Access the application at http://localhost:3000
 
 ---
 
-## 🎯 User Journey
-
-### Application Flow
-
-```mermaid
-graph TD
-    A[Landing Page] --> B[Sign Up / Login]
-    B --> C[Onboarding]
-    C --> D[Complete Profile]
-    D --> E[Dashboard]
-    E --> F[Budget Planner]
-    E --> G[Savings Strategies]
-    E --> H[Learning Scenarios]
-    E --> I[Learning Paths]
-```
-
-1. **Sign Up / Login**: Create an account or authenticate
-2. **Onboarding**: Complete financial profile with demographic info
-3. **Dashboard**: Access all platform features
-4. **Budget Planner**: Create and track monthly budgets
-5. **Savings Strategies**: Get AI-powered personalized recommendations
-6. **Scenarios**: Practice financial decision-making with real-world situations
-7. **Learning Path**: Follow structured financial education courses
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 finora/
-├── 📂 prisma/
-│   ├── schema.prisma              # Database schema and models
-│   ├── seed.js                    # Database seeding script
-│   └── migrations/                # Database migration history
-│
-├── 📂 server/
-│   ├── index.js                   # Express server entry point
-│   ├── 📂 routes/                 # API route handlers
-│   │   ├── auth.js               # Authentication endpoints
-│   │   ├── profile.js            # User profile management
-│   │   ├── budget.js             # Budget planner endpoints
-│   │   ├── savings.js            # Savings strategies
-│   │   ├── scenarios.js          # Learning scenarios
-│   │   ├── learning.js           # Learning paths
-│   │   └── friday.js             # AI chatbot integration
-│   ├── 📂 services/               # Business logic layer
-│   │   └── gemini.js             # Google Gemini AI service
-│   ├── 📂 middleware/             # Express middleware
-│   │   └── auth.js               # JWT authentication
-│   └── 📂 lib/                    # Utilities
-│       └── prisma.js             # Prisma client instance
-│
-├── 📂 src/
-│   ├── 📂 app/                    # Next.js App Router pages
-│   │   ├── layout.tsx            # Root layout
-│   │   ├── page.tsx              # Landing page
-│   │   ├── globals.css           # Global styles
-│   │   ├── 📂 auth/              # Authentication pages
-│   │   │   ├── login/            
-│   │   │   └── signup/           
-│   │   ├── 📂 onboarding/        # User profiling
-│   │   ├── 📂 dashboard/         # Main dashboard
-│   │   ├── 📂 budget/            # Budget planner UI
-│   │   ├── 📂 savings/           # Savings strategies UI
-│   │   ├── 📂 scenarios/         # Learning scenarios UI
-│   │   ├── 📂 learning/          # Learning paths UI
-│   │   └── 📂 profile/           # User profile management
-│   │
-│   ├── 📂 components/             # Reusable React components
-│   │   ├── FRIDAYChat.tsx        # AI chatbot component
-│   │   ├── LanguageProvider.tsx  # i18n context provider
-│   │   ├── LanguageSwitcher.tsx  # Language selector
-│   │   ├── SectionGuidanceModal.tsx
-│   │   └── 📂 ui/                # UI component library
-│   │       ├── button.tsx
-│   │       ├── card.tsx
-│   │       ├── input.tsx
-│   │       └── label.tsx
-│   │
-│   ├── 📂 lib/                    # Utility functions
-│   │   ├── api.ts                # API client
-│   │   └── utils.ts              # Helper functions
-│   │
-│   ├── 📂 store/                  # Zustand state management
-│   │   ├── authStore.ts          # Authentication state
-│   │   ├── languageStore.ts      # Language preferences
-│   │   └── profileStore.ts       # User profile state
-│   │
-│   └── 📂 i18n/                   # Internationalization
-│       ├── request.ts            # i18n configuration
-│       └── 📂 messages/           # Translation files
-│           ├── en.json           # English
-│           ├── hi.json           # Hindi
-│           ├── ta.json           # Tamil
-│           ├── te.json           # Telugu
-│           ├── ml.json           # Malayalam
-│           └── kn.json           # Kannada
-│
-├── 📄 .env                        # Environment variables (not in git)
-├── 📄 package.json                # Dependencies and scripts
-├── 📄 tsconfig.json               # TypeScript configuration
-├── 📄 next.config.js              # Next.js configuration
-├── 📄 tailwind.config.js          # Tailwind CSS configuration
-└── 📄 README.md                   # This file
+├── prisma/                    # Database schema and migrations
+│   ├── schema.prisma
+│   └── migrations/
+├── server/                    # Backend API
+│   ├── index.js              # Express server
+│   ├── routes/               # API endpoints
+│   ├── services/             # Business logic
+│   ├── middleware/           # Authentication
+│   └── lib/                  # Utilities
+├── src/                      # Frontend application
+│   ├── app/                  # Next.js pages
+│   ├── components/           # React components
+│   ├── lib/                  # Client utilities
+│   ├── store/                # State management
+│   └── i18n/                 # Translation files
+├── .env                      # Environment configuration
+├── package.json              # Dependencies
+└── README.md                 # Documentation
 ```
 
 ---
 
-## 📡 API Documentation
+## API Documentation
 
 ### Authentication Endpoints
-
-#### Register New User
-```http
-POST /api/auth/signup
-Content-Type: application/json
-
-{
-  "email": "user@example.com",
-  "password": "securePassword123",
-  "name": "John Doe"
-}
-```
-
-#### Login
-```http
-POST /api/auth/login
-Content-Type: application/json
-
-{
-  "email": "user@example.com",
-  "password": "securePassword123"
-}
-```
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/login` - User authentication
 
 ### Profile Management
+- `GET /api/profile` - Retrieve user profile
+- `POST /api/profile` - Create or update profile
 
-#### Get User Profile
-```http
-GET /api/profile
-Authorization: Bearer <token>
-```
-
-#### Create/Update Profile
-```http
-POST /api/profile
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "ageRange": "25-35",
-  "category": "WORKING_PROFESSIONAL",
-  "language": "en",
-  "monthlyIncome": 50000,
-  "monthlyExpenses": 30000,
-  "financialGoals": ["SAVINGS", "INVESTMENT"],
-  "riskLevel": "MODERATE"
-}
-```
-
-### Budget Management
-
-#### Get Monthly Budget
-```http
-GET /api/budget/:year/:month
-Authorization: Bearer <token>
-```
-
-#### Create/Update Budget
-```http
-POST /api/budget
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "year": 2026,
-  "month": 2,
-  "totalIncome": 50000,
-  "totalExpenses": 30000,
-  "categories": [...]
-}
-```
+### Budget Operations
+- `GET /api/budget/:year/:month` - Retrieve monthly budget
+- `POST /api/budget` - Create or update budget
+- `PATCH /api/budget/category/:id` - Update budget category
 
 ### Savings Strategies
+- `GET /api/savings` - Retrieve all strategies
+- `POST /api/savings/generate` - Generate AI-powered strategy
+- `PATCH /api/savings/:id/toggle` - Toggle strategy activation
 
-#### Get All Strategies
-```http
-GET /api/savings
-Authorization: Bearer <token>
-```
+### Learning Features
+- `GET /api/scenarios` - Retrieve learning scenarios
+- `POST /api/scenarios/attempt` - Submit scenario response
+- `GET /api/learning/paths` - Retrieve educational paths
+- `POST /api/learning/progress` - Update learning progress
 
-#### Generate AI Strategy
-```http
-POST /api/savings/generate
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "strategyType": "SIP",
-  "monthlyAmount": 5000,
-  "duration": 60
-}
-```
-
-### Learning & Scenarios
-
-#### Get Learning Paths
-```http
-GET /api/learning/paths
-Authorization: Bearer <token>
-```
-
-#### Submit Scenario Attempt
-```http
-POST /api/scenarios/attempt
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "scenarioId": "uuid",
-  "selectedOption": "optionId",
-  "reasoning": "User's explanation"
-}
-```
-
-For complete API documentation, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
+### AI Assistant
+- `POST /api/friday/chat` - Interact with FRIDAY assistant
 
 ---
 
-## 🗄️ Database Schema
+## Security Considerations
 
-### Core Models
-
-```prisma
-model User {
-  id                String              @id @default(uuid())
-  email             String              @unique
-  password          String
-  name              String?
-  hasProfile        Boolean             @default(false)
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-  
-  // Relations
-  financialProfile  FinancialProfile?
-  budgets           Budget[]
-  savingsStrategies SavingsStrategy[]
-  scenarios         ScenarioAttempt[]
-  learningProgress  LearningProgress[]
-}
-
-model FinancialProfile {
-  id                String   @id @default(uuid())
-  userId            String   @unique
-  ageRange          String
-  category          String
-  language          String   @default("en")
-  monthlyIncome     Float
-  monthlyExpenses   Float
-  financialGoals    String[]
-  riskLevel         String
-  
-  user              User     @relation(fields: [userId], references: [id])
-}
-
-model Budget {
-  id              String            @id @default(uuid())
-  userId          String
-  year            Int
-  month           Int
-  totalIncome     Float
-  totalExpenses   Float
-  
-  user            User              @relation(fields: [userId], references: [id])
-  categories      BudgetCategory[]
-}
-```
-
-For complete schema, see [prisma/schema.prisma](./prisma/schema.prisma)
-
----
-
-## 🌐 Multilingual Support
-
-FINORA supports 6 Indian languages with culturally adapted content:
-
-| Language | Code | Status | Coverage |
-|----------|------|--------|----------|
-| English | `en` | ✅ Complete | 100% |
-| Hindi | `hi` | ✅ Complete | 100% |
-| Tamil | `ta` | ✅ Complete | 100% |
-| Telugu | `te` | ✅ Complete | 100% |
-| Malayalam | `ml` | ✅ Complete | 100% |
-| Kannada | `kn` | ✅ Complete | 100% |
-
-### Adding New Translations
-
-1. Create a new JSON file in `src/i18n/messages/`
-2. Copy structure from `en.json`
-3. Translate all keys
-4. Update language switcher component
-
-Translation files include:
-- UI labels and buttons
-- Form validations
-- Error messages
-- Financial terminology
-- Educational content
-
----
-
-## 🔐 Security
-
-### Security Measures Implemented
-
-| Feature | Implementation |
-|---------|---------------|
-| **Password Hashing** | bcrypt with 10 salt rounds |
-| **Authentication** | JWT tokens with expiration |
-| **SQL Injection** | Protected via Prisma ORM |
-| **Input Validation** | Zod schema validation |
-| **Environment Variables** | Sensitive data in `.env` |
-| **CORS** | Configured for specific origins |
-| **Rate Limiting** | *(Recommended for production)* |
-
-### Best Practices
-
-- Never commit `.env` file
-- Use strong JWT secrets (min 256 bits)
-- Implement HTTPS in production
-- Regular dependency updates
-- Sanitize user inputs
-- Implement rate limiting for APIs
-
----
-
-## 🔧 Troubleshooting
-
-### Database Connection Issues
-```bash
-# Check if PostgreSQL is running
-psql -U postgres
-
-# Reset database
-npm run prisma:migrate reset
-```
-
-### Port Already in Use
-```bash
-# Find process using port
-netstat -ano | findstr :3000
-netstat -ano | findstr :3001
-
-# Kill process (replace PID)
-taskkill /PID <PID> /F
-```
-
-### Prisma Issues
-```bash
-# Regenerate Prisma Client
-npm run prisma:generate
-
-# If schema changed, create migration
-npx prisma migrate dev --name your_migration_name
-
-# Reset database completely
-npm run prisma:migrate reset
-```
-
-### JWT Authentication Fails
-
-**Problem**: "Invalid token" or authentication errors
-
-**Solution**:
-- Ensure `JWT_SECRET` is set in `.env`
-- Clear browser cookies/localStorage
-- Check token expiration settings
-
-### Gemini API Errors
-
-**Problem**: AI responses fail or timeout
-
-**Solution**:
-- Verify `GEMINI_API_KEY` in `.env`
-- Check API quota limits
-- Test API key at [Google AI Studio](https://makersuite.google.com/)
-
----
-
-## 🎨 Design Principles
-
-### UI/UX Guidelines
-
-- ✅ **No emojis** in the user interface
-- ✅ **Professional** fintech design aesthetic
-- ✅ **High contrast** and WCAG AA accessible
-- ✅ **Beginner-friendly** layouts and interactions
-- ✅ **Clean and minimal** interface design
-- ✅ **Educational** focus in all content
-
----
-
-## 🤖 AI Integration
-
-### Google Gemini API Usage
-
-The platform uses Google Gemini AI for:
-
-| Feature | Purpose |
-|---------|---------|
-| **Strategy Explanation** | Simplifying financial concepts |
-| **Personalized Scenarios** | Creating contextual learning situations |
-| **Decision Feedback** | Providing constructive guidance |
-| **Content Adaptation** | Tailoring to user demographics |
-
-### AI Guidelines
-
-- ❌ No market predictions or forecasts
-- ❌ No stock recommendations
-- ✅ Simple, clear language
-- ✅ Educational focus only
-- ✅ Culturally appropriate content
-- ✅ Beginner-friendly explanations
-
----
-
-## 📝 Development Guidelines
-
-### Adding New Features
-1. Update Prisma schema if needed
-2. Create/update API routes
-3. Create frontend pages/components
-4. Add translations for all languages
-5. Test thoroughly
-
-### Code Standards
-- ✅ Use TypeScript for type safety
-- ✅ Follow REST API conventions
-- ✅ Validate all inputs
-- ✅ Handle errors gracefully
-- ✅ Write clear comments
-
----
-
-## 🚀 Deployment Checklist
-
-### Pre-Production Steps
-
-- [ ] Update JWT_SECRET with strong random string (min 256 bits)
-- [ ] Set up production PostgreSQL database
-- [ ] Configure production environment variables
-- [ ] Update CORS settings for production domain
-- [ ] Test all API endpoints
-- [ ] Verify multilingual content
-- [ ] Test authentication flow
-- [ ] Optimize images and assets
-- [ ] Set up monitoring and logging
-- [ ] Configure SSL/HTTPS
-- [ ] Enable rate limiting
-- [ ] Database backup strategy
-
----
-
-## 🤝 Contributing
-
-We welcome contributions to FINORA!
-
-### Development Workflow
-
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/your-feature-name`
-3. **Commit** your changes: `git commit -m "feat: add new feature"`
-4. **Push** to your fork: `git push origin feature/your-feature-name`
-5. **Create** a Pull Request
-
-### Commit Convention
-```
-feat: Add new feature
-fix: Fix bug
-docs: Update documentation
-style: Format code
-refactor: Refactor code
-test: Add tests
-chore: Update dependencies
-```
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
-## 💬 Support
-
-### Getting Help
-
-- 📖 **Documentation**: Check [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md)
-- 🐛 **Bug Reports**: Open an issue on GitHub
-- 💡 **Feature Requests**: Submit via GitHub Issues
-
-### Resources
-
-- [API Documentation](./API_DOCUMENTATION.md)
-- [Developer Guide](./DEVELOPER_GUIDE.md)
-- [Quick Start](./QUICKSTART.md)
-- [Feature List](./FEATURES.md)
-
----
-
-## 🎯 Roadmap
-
-### Phase 1: Foundation ✅ Complete
-- [x] User authentication system
-- [x] Multi-language support (6 languages)
-- [x] Budget planner with category tracking
-- [x] Savings strategies (SIP, SWP, RD, Emergency Fund)
-- [x] Learning scenarios with AI feedback
-- [x] AI chatbot integration (FRIDAY)
-
-### Phase 2: Enhancement 🚧 In Progress
-- [ ] Advanced data visualization and charts
-- [ ] Export reports (PDF/Excel)
-- [ ] Email/SMS notifications
-- [ ] Mobile app (React Native)
-- [ ] Gamification elements
-- [ ] Social sharing features
-
-### Phase 3: Expansion 📅 Planned
-- [ ] Investment basics module
-- [ ] Tax calculator tool
-- [ ] Insurance planning guidance
-- [ ] Retirement planning calculator
-- [ ] Community forums
-- [ ] Expert consultations
-
----
-
-## 🏆 Acknowledgments
-
-Built with powerful tools and frameworks:
-
-- **Google Gemini AI** for AI capabilities
-- **Vercel** for Next.js framework
-- **Prisma** for database ORM
-- **Shadcn/ui** for UI components
-- **Tailwind CSS** for styling
-- **Radix UI** for accessible components
-
----
-
-## 📊 Project Stats
-
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-
----
-
-<div align="center">
-
-**[⬆ Back to Top](#-finora---vernacular-financial-guidance-platform)**
-
-Made with 💙 for financial literacy in India
-
-**Repository**: [github.com/santhoshkrishnan-M/Finora_fintech](https://github.com/santhoshkrishnan-M/Finora_fintech)
-
-</div>
-
----
-
-**Built with ❤️ for financial education in India**
-#   F i n o r a _ f i n t e c h 
- 
- 
